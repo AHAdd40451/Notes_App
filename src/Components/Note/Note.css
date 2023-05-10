@@ -26,7 +26,6 @@
 
 .note_footer img {
   cursor: pointer;
-  opacity: 0;
   transition: 300ms;
 }
 

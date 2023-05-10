@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Note from "../Note/Note";
 
 import "./NoteContainer.css";
 
-function NoteContainer(props) {
+const NoteContainer = (props) => {
   const reverArray = (arr) => {
     const array = [];
 
@@ -15,13 +15,15 @@ function NoteContainer(props) {
   };
 
   const notes = reverArray(props.notes);
-  console.log(notes);
   const [searchQuery, setSearchQuery] = useState("");
-  const filteredNotes = notes.filter((note) =>
-    note.text.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const [dateQuery, setDateQuery] = useState("");
 
-  const isDisabled = filteredNotes.length === 0;
+  const filteredNotes = notes.filter(
+    (note) =>
+      note.text.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (!dateQuery || new Date(note.time).toDateString() === new Date(dateQuery).toDateString())
+  );
+  const isDisabled = props.notes.length === 0;
   const placeholderText = isDisabled ? "Add a note first" : "Search notes";
 
   return (
@@ -29,14 +31,21 @@ function NoteContainer(props) {
       <div className="head-input-container">
         <h2>Notes</h2>
 
-      <input
-        type="text"
-        className="search_input"
-        placeholder={placeholderText}
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-            </div>
+        <input
+          type="text"
+          className="search_input"
+          placeholder={placeholderText}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+
+        <input
+          type="date"
+          className="search_input"
+          value={dateQuery}
+          onChange={(e) => setDateQuery(e.target.value)}
+        />
+      </div>
 
       <div className="note-container_notes custom-scroll">
         {filteredNotes?.length > 0 ? (
@@ -54,6 +63,6 @@ function NoteContainer(props) {
       </div>
     </div>
   );
-}
+};
 
 export default NoteContainer;
