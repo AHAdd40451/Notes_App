@@ -1,0 +1,44 @@
+.note-container {
+  height: 100%;
+}
+
+.note-container h2 {
+  margin-bottom: 20px;
+}
+
+.note-container_notes {
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow-y: scroll;
+  padding: 9px;
+}
+.head_input_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 17.5rem;
+}
+.search_input {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+  margin-bottom: 1rem;
+  /* Optional - Increase contrast on focus */
+  &:focus {
+    border-color: #66afe9;
+  }
+}
+
+.head-input-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 18rem;
+}
