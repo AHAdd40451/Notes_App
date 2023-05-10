@@ -23,7 +23,7 @@ const NoteContainer = (props) => {
       note.text.toLowerCase().includes(searchQuery.toLowerCase()) &&
       (!dateQuery || new Date(note.time).toDateString() === new Date(dateQuery).toDateString())
   );
-  const isDisabled = props.notes.length === 0;
+  const isDisabled = filteredNotes.length === 0;
   const placeholderText = isDisabled ? "Add a note first" : "Search notes";
 
   return (
